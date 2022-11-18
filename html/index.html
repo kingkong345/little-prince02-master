@@ -22,6 +22,8 @@
     <script src="../js/gsap/gsap.min.js"></script>
     <script src="../js/gsap/CSSRulePlugin.min.js"></script>
     <script src="../js/gsap/ScrollTrigger.min.js"></script>
+    <script src="../js/js.cookie.min.js"></script>
+    <script src="../js/email.min.js"></script>
     <script src="../js/main.js" defer></script>
   </head>
   <body>
@@ -233,12 +235,24 @@
           <div class="info">
             <p class="infoBox" data-splitting>
               CONTACT. <br />
-              <span class="weight">010 2437 8377</span>
-            </p>
-            <p class="infoBox" data-splitting>
+              <!-- <span class="weight">010 2437 8377</span>
+            </p> -->
+              <!-- <p class="infoBox" data-splitting>
               E-Mail.<br />
               <span class="weight">dldbwls0525@naver.com</span>
+            </p> -->
             </p>
+
+            <div class="email-box">
+              <input type="text" placeholder="please write subject" id="subject" />
+              <input type="text" placeholder="please your email address" id="email" />
+              <input type="text" placeholder="please your name" id="name" />
+              <input type="text" placeholder="please your phone" id="phone" />
+              <textarea name="" id="contents" cols="30" rows="10" placeholder="message"></textarea>
+              <div class="btns">
+                <button class="btn-send">SEND</button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="prince">
@@ -250,6 +264,20 @@
       <!-- <span class="txt">MOVE</span> -->
       <img src="../images/main/star.svg" alt="" />
     </div>
-    <span class="iconScroll"> SCROLL </span>
+    <aside class="popup">
+      <div class="img-box"><img src="../images/main/little-prince01.png" alt="" /></div>
+      <div class="message">
+        상업적 목적으로 만든 사이트가 아닙니다. <br />
+        여기에 쓰인 모든 이미지및 폰트의 저작권은 저한테 있지 않습니다.
+      </div>
+      <div class="btns">
+        <button class="btn-close">닫기</button>
+        <button class="btn-oneday">오늘 하루 이 창을 열지 않기</button>
+      </div>
+    </aside>
+    <div class="message-box">
+      <span class="txt">메일이 발송되었습니다.</span>
+      <button class="btn-close">닫기</button>
+    </div>
   </body>
 </html>

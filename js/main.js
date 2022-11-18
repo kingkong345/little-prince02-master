@@ -317,6 +317,56 @@ contactTL
       each: 0.05,
     },
   })
-  .from("#contact .prince", {
-    opacity: 0,
-  });
+  .from("#contact #subject", { opacity: 0, x: 100 })
+  .from("#contact #email", { opacity: 0, x: 100 })
+  .from("#contact #name", { opacity: 0, x: 100 })
+  .from("#contact #phone", { opacity: 0, x: 100 })
+  .from("#contact #contents", { opacity: 0, x: 100 })
+  .from("#contact .btns .btn-send", { opacity: 0 })
+  .from("#contact .prince", { opacity: 0 });
+
+if (Cookies.get("oneDay") !== "ok") {
+  gsap.to(".popup", { top: 100, duration: 1, ease: "back" });
+} else {
+  $(".popup").remove();
+}
+
+$(".popup .btn-close").on("click", function () {
+  gsap.to(".popup", { top: -1000, ease: "back.in", duration: 1 });
+});
+$(".popup .btn-oneday").on("click", function () {
+  Cookies.set("oneDay", "ok", { expires: 1 });
+  gsap.to(".popup", { top: -1000, ease: "back.in", duration: 1 });
+});
+
+$(".btn-send").on("click", function () {
+  emailjs.init("MxSF_Q5sibFEF1uPm");
+  const templateParams = {
+    subject: $("#subject").val(),
+    name: $("#name").val(),
+    phone: $("#phone").val(),
+    email: $("#email").val(),
+    contents: $("#contents").val(),
+  };
+
+  emailjs.send("service_bm3trvg", "template_yghdhjp", templateParams).then(
+    function (response) {
+      console.log("SUCCESS!", response.status, response.text);
+      $(".message-box").addClass("on");
+      $(".message-box .txt").text("메일이 발송 되었습니다.");
+      $("#subject").val("");
+      $("#name").val("");
+      $("#phone").val("");
+      $("#email").val("");
+      $("#contents").val("");
+    },
+    function (error) {
+      console.log("FAILED...", error);
+      $(".message-box").addClass("on");
+      $(".message-box .txt").text("알 수 없는 오류로 메일이 발송이 되지않았습니다.");
+    }
+  );
+});
+$(".message-box .btn-close").on("click", function () {
+  $(".message-box").removeClass("on");
+});
